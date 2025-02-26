@@ -1,0 +1,10 @@
+D:\Repos\SimulationModelling\SimulationModelling.Lab2\bin\Debug\SimulationModelling.Lab2.exe.config
+D:\Repos\SimulationModelling\SimulationModelling.Lab2\bin\Debug\SimulationModelling.Lab2.exe
+D:\Repos\SimulationModelling\SimulationModelling.Lab2\bin\Debug\SimulationModelling.Lab2.pdb
+D:\Repos\SimulationModelling\SimulationModelling.Lab2\obj\Debug\SimulationModelling.Lab2.csproj.AssemblyReference.cache
+D:\Repos\SimulationModelling\SimulationModelling.Lab2\obj\Debug\SimulationModelling.Lab2.Form1.resources
+D:\Repos\SimulationModelling\SimulationModelling.Lab2\obj\Debug\SimulationModelling.Lab2.Properties.Resources.resources
+D:\Repos\SimulationModelling\SimulationModelling.Lab2\obj\Debug\SimulationModelling.Lab2.csproj.GenerateResource.cache
+D:\Repos\SimulationModelling\SimulationModelling.Lab2\obj\Debug\SimulationModelling.Lab2.csproj.CoreCompileInputs.cache
+D:\Repos\SimulationModelling\SimulationModelling.Lab2\obj\Debug\SimulationModelling.Lab2.exe
+D:\Repos\SimulationModelling\SimulationModelling.Lab2\obj\Debug\SimulationModelling.Lab2.pdb
