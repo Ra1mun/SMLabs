@@ -5,27 +5,33 @@ namespace SimulationModelling.Lab1
 {
     public partial class Form1 : Form
     {
+        private const double g = 9.81;
+        private const double C = 0.15;
+        private const double rho = 1.29;
+
+        private double x, y, v0, cosa, sina, S, m, k, vx, vy, dt;
+        private double ymax;
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        double t, x, y, v0, cosa, sina, S, m, k, vx, vy, dt;
-
         private void timer1_Tick_1(object sender, EventArgs e)
         {
-            t += dt;
+            var v = Math.Sqrt(vx * vx + vy * vy);
+            vx -= k * vx * v * dt;
+            vy -= (g + k * vy * v) * dt;
+            x += vx * dt;
+            y += vy * dt;
 
-            var v = (double)Math.Sqrt((double)(vx * vx + vy * vy));
-            vx = vx - k * vx * v * dt;
-            vy = vy - (g + k * vy * v) * dt;
-            x = x + vx * dt;
-            y = y + vy * dt;
-
-            if (ymax < y) ymax = y;
+            if (ymax < y)
+                ymax = y;
 
             chart1.Series[0].Points.AddXY(x, y);
-            if (y <= 0) timer1.Stop();
+
+            if (y <= 0)
+                timer1.Stop();
 
             textBoxStep.Text = "" + dt;
             textBoxDistance.Text = "" + x;
@@ -33,15 +39,9 @@ namespace SimulationModelling.Lab1
             textBoxSpeedEndPoint.Text = "" + v;
         }
 
-        const double g = 9.81;
-        const double C = 0.15;
-        const double rho = 1.29;
-        double ymax = 0;
-
         private void LaucnhButton_Click(object sender, EventArgs e)
         {
             InitializeValues(out var height, out var angle, out var speed);
-            t = 0;
             x = 0;
             y = height;
             v0 = speed;
@@ -57,7 +57,6 @@ namespace SimulationModelling.Lab1
             timer1.Start();
         }
 
-        
 
         private void InitializeValues(out double height, out double angle, out double speed)
         {

@@ -1,0 +1,17 @@
+D:\Repos\SimulationModelling\SimulationModelling.Lab4\bin\Debug\net8.0-windows\SimulationModelling.Lab4.exe
+D:\Repos\SimulationModelling\SimulationModelling.Lab4\bin\Debug\net8.0-windows\SimulationModelling.Lab4.deps.json
+D:\Repos\SimulationModelling\SimulationModelling.Lab4\bin\Debug\net8.0-windows\SimulationModelling.Lab4.runtimeconfig.json
+D:\Repos\SimulationModelling\SimulationModelling.Lab4\bin\Debug\net8.0-windows\SimulationModelling.Lab4.dll
+D:\Repos\SimulationModelling\SimulationModelling.Lab4\bin\Debug\net8.0-windows\SimulationModelling.Lab4.pdb
+D:\Repos\SimulationModelling\SimulationModelling.Lab4\obj\Debug\net8.0-windows\SimulationModelling.Lab4.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repos\SimulationModelling\SimulationModelling.Lab4\obj\Debug\net8.0-windows\SimulationModelling.Lab4.AssemblyInfoInputs.cache
+D:\Repos\SimulationModelling\SimulationModelling.Lab4\obj\Debug\net8.0-windows\SimulationModelling.Lab4.AssemblyInfo.cs
+D:\Repos\SimulationModelling\SimulationModelling.Lab4\obj\Debug\net8.0-windows\SimulationModelling.Lab4.csproj.CoreCompileInputs.cache
+D:\Repos\SimulationModelling\SimulationModelling.Lab4\obj\Debug\net8.0-windows\SimulationModelling.Lab4.sourcelink.json
+D:\Repos\SimulationModelling\SimulationModelling.Lab4\obj\Debug\net8.0-windows\SimulationModelling.Lab4.dll
+D:\Repos\SimulationModelling\SimulationModelling.Lab4\obj\Debug\net8.0-windows\refint\SimulationModelling.Lab4.dll
+D:\Repos\SimulationModelling\SimulationModelling.Lab4\obj\Debug\net8.0-windows\SimulationModelling.Lab4.pdb
+D:\Repos\SimulationModelling\SimulationModelling.Lab4\obj\Debug\net8.0-windows\SimulationModelling.Lab4.genruntimeconfig.cache
+D:\Repos\SimulationModelling\SimulationModelling.Lab4\obj\Debug\net8.0-windows\ref\SimulationModelling.Lab4.dll
+D:\Repos\SimulationModelling\SimulationModelling.Lab4\obj\Debug\net8.0-windows\SimulationModelling.Lab4.Form1.resources
+D:\Repos\SimulationModelling\SimulationModelling.Lab4\obj\Debug\net8.0-windows\SimulationModelling.Lab4.csproj.GenerateResource.cache

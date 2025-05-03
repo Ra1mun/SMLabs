@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "SimulationModelling.Lab4/1.0.0": {
+        "runtime": {
+          "SimulationModelling.Lab4.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SimulationModelling.Lab4/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

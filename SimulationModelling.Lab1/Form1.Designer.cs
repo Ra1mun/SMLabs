@@ -23,8 +23,8 @@
         #region Код, автоматически созданный конструктором форм Windows
 
         /// <summary>
-        /// Требуемый метод для поддержки конструктора — не изменяйте 
-        /// содержимое этого метода с помощью редактора кода.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -148,11 +148,7 @@
             this.inputAngle.Name = "inputAngle";
             this.inputAngle.Size = new System.Drawing.Size(120, 20);
             this.inputAngle.TabIndex = 13;
-            this.inputAngle.Value = new decimal(new int[] {
-            45,
-            0,
-            0,
-            0});
+            this.inputAngle.Value = new decimal(new int[] { 45, 0, 0, 0 });
             // 
             // inputSpeed
             // 
@@ -160,11 +156,7 @@
             this.inputSpeed.Name = "inputSpeed";
             this.inputSpeed.Size = new System.Drawing.Size(120, 20);
             this.inputSpeed.TabIndex = 14;
-            this.inputSpeed.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
+            this.inputSpeed.Value = new decimal(new int[] { 10, 0, 0, 0 });
             // 
             // inputSize
             // 
@@ -173,11 +165,7 @@
             this.inputSize.Name = "inputSize";
             this.inputSize.Size = new System.Drawing.Size(120, 20);
             this.inputSize.TabIndex = 15;
-            this.inputSize.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
+            this.inputSize.Value = new decimal(new int[] { 1, 0, 0, 65536 });
             // 
             // inputWeight
             // 
@@ -185,11 +173,7 @@
             this.inputWeight.Name = "inputWeight";
             this.inputWeight.Size = new System.Drawing.Size(120, 20);
             this.inputWeight.TabIndex = 16;
-            this.inputWeight.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.inputWeight.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // inputStep
             // 
@@ -198,11 +182,7 @@
             this.inputStep.Name = "inputStep";
             this.inputStep.Size = new System.Drawing.Size(120, 20);
             this.inputStep.TabIndex = 18;
-            this.inputStep.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
+            this.inputStep.Value = new decimal(new int[] { 1, 0, 0, 131072 });
             // 
             // label6
             // 
@@ -319,7 +299,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.inputStep)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

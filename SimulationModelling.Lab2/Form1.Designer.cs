@@ -23,8 +23,8 @@
         #region Код, автоматически созданный конструктором форм Windows
 
         /// <summary>
-        /// Требуемый метод для поддержки конструктора — не изменяйте 
-        /// содержимое этого метода с помощью редактора кода.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
@@ -46,6 +46,7 @@
             // 
             // chart1
             // 
+            chartArea1.AxisY.Minimum = 60D;
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.BackColor = System.Drawing.Color.White;
@@ -78,38 +79,22 @@
             // inputPrice
             // 
             this.inputPrice.DecimalPlaces = 2;
-            this.inputPrice.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
+            this.inputPrice.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
             this.inputPrice.Location = new System.Drawing.Point(74, 25);
             this.inputPrice.Name = "inputPrice";
             this.inputPrice.Size = new System.Drawing.Size(120, 20);
             this.inputPrice.TabIndex = 2;
-            this.inputPrice.Value = new decimal(new int[] {
-            70,
-            0,
-            0,
-            0});
+            this.inputPrice.Value = new decimal(new int[] { 70, 0, 0, 0 });
             // 
             // inputSecondPrice
             // 
             this.inputSecondPrice.DecimalPlaces = 2;
-            this.inputSecondPrice.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
+            this.inputSecondPrice.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
             this.inputSecondPrice.Location = new System.Drawing.Point(200, 25);
             this.inputSecondPrice.Name = "inputSecondPrice";
             this.inputSecondPrice.Size = new System.Drawing.Size(120, 20);
             this.inputSecondPrice.TabIndex = 3;
-            this.inputSecondPrice.Value = new decimal(new int[] {
-            80,
-            0,
-            0,
-            0});
+            this.inputSecondPrice.Value = new decimal(new int[] { 80, 0, 0, 0 });
             // 
             // label1
             // 
@@ -151,7 +136,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.inputSecondPrice)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
