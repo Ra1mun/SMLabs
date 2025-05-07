@@ -13,7 +13,6 @@ D:\Repos\SimulationModelling\Lab8\obj\Debug\net8.0-windows\refint\Lab8.dll
 D:\Repos\SimulationModelling\Lab8\obj\Debug\net8.0-windows\Lab8.pdb
 D:\Repos\SimulationModelling\Lab8\obj\Debug\net8.0-windows\Lab8.genruntimeconfig.cache
 D:\Repos\SimulationModelling\Lab8\obj\Debug\net8.0-windows\ref\Lab8.dll
-D:\Repos\SimulationModelling\Lab8\obj\Debug\net8.0-windows\Lab8.lab3.resources
 D:\Repos\SimulationModelling\Lab8\obj\Debug\net8.0-windows\Lab8.csproj.GenerateResource.cache
 D:\Repos\SimulationModelling\Lab8\obj\Debug\net8.0-windows\Lab8.Form1.resources
 D:\Repos\SimulationModelling\Lab8\obj\Debug\net8.0-windows\Lab8.lab1.resources

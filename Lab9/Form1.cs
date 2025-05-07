@@ -13,13 +13,22 @@ namespace Lab9
 {
     public partial class Form1 : Form
     {
-        private readonly Dictionary<int, double> distribution = new Dictionary<int, double>
+        private readonly Dictionary<int, double> _distribution = new Dictionary<int, double>
         {
             { 1, 0.1 },
             { 2, 0.25 },
             { 3, 0.3 },
             { 4, 0.15 },
             { 5, 0.2 }
+        };
+        
+        private Dictionary<int, double> _criticalValues = new Dictionary<int, double>()
+        {
+            { 1, 3.841 },
+            { 2, 5.991 },
+            { 3, 7.815 },
+            { 4, 9.488 },
+            { 5, 11.070 }
         };
 
         private readonly List<TextBox> _evtTextBoxes;
@@ -28,7 +37,7 @@ namespace Lab9
         public Form1()
         {
             InitializeComponent();
-            _evtTextBoxes = new List<TextBox>()
+            _evtTextBoxes = new List<TextBox>
             {
                 textBox1, textBox2, textBox3, textBox4, textBox5
             };
@@ -40,22 +49,22 @@ namespace Lab9
 
             var N = int.Parse(trialsBox.Text);
 
-            var observed = GenerateRandomValues(distribution, N);
+            var observed = GenerateRandomValues(_distribution, N);
 
             var empiricalProbs = ComputeEmpiricalProbabilities(observed, N);
-            var theoreticalProbs = distribution.ToDictionary(kv => kv.Key, kv => kv.Value);
+            var theoreticalProbs = _distribution.ToDictionary(kv => kv.Key, kv => kv.Value);
 
             var sampleMean = ComputeMean(observed);
             var sampleVariance = ComputeVariance(observed, sampleMean);
 
-            var trueMean = ComputeTrueMean(distribution);
-            var trueVariance = ComputeTrueVariance(distribution, trueMean);
+            var trueMean = ComputeTrueMean(_distribution);
+            var trueVariance = ComputeTrueVariance(_distribution, trueMean);
 
             var relErrorMean = Math.Abs(sampleMean - trueMean) / trueMean;
             var relErrorVar = Math.Abs(sampleVariance - trueVariance) / trueVariance;
 
             var chiSquare = ComputeChiSquare(observed, theoreticalProbs, N);
-            var pValue = ChiSquareTest(chiSquare, distribution.Count - 1);
+            var pValue = ChiSquareTest(chiSquare, _distribution.Count - 1);
 
             foreach(var key in empiricalProbs.Keys)
             {
@@ -64,9 +73,13 @@ namespace Lab9
                 chart1.Series[0].Points.AddXY(key, empiricalProbs[key]);
             }
 
+            var compare = pValue > 0.05
+                ? $"{_criticalValues[_distribution.Count - 1]} > {chiSquare:F3}"
+                : $"{_criticalValues[_distribution.Count - 1]} < {chiSquare:F3}";
+            
             AverageLabel.Text = $"Выборочное среднее: {sampleMean:F3}, ош.={relErrorMean:P2}";
             VarianceLabel.Text = $"Выборочная дисперсия: {sampleVariance:F3}, ош.={relErrorVar:P2}";
-            ChiSquareLabel.Text = $"Статистика хи-квадрат: {chiSquare:F3}, гипотеза о соответствии распределению является {pValue > 0.05}" ;
+            ChiSquareLabel.Text = $"Хи-квадрат: {compare} является {pValue > 0.05}" ;
         }
 
         private static List<int> GenerateRandomValues(Dictionary<int, double> distribution, int N)
@@ -144,7 +157,7 @@ namespace Lab9
             foreach (var key in theoretical.Keys)
             {
                 int O;
-                if(!freq.TryGetValue(key, out var value))
+                if(freq.TryGetValue(key, out var value))
                 {
                     O = 0;
                 }
@@ -157,22 +170,11 @@ namespace Lab9
             return chi2;
         }
 
-        // Таблица критических значений хи-квадрат (приблизительно)
-        private static double ChiSquareTest(double chi2, int df)
+        private double ChiSquareTest(double chi2, int df)
         {
-            // Приближение через таблицу для уровня значимости 0.05
-            var criticalValues = new Dictionary<int, double>()
-        {
-            { 1, 3.841 },
-            { 2, 5.991 },
-            { 3, 7.815 },
-            { 4, 9.488 },
-            { 5, 11.070 }
-        };
+            if (!_criticalValues.TryGetValue(df, out var value)) return 0;
 
-            if (!criticalValues.ContainsKey(df)) return 0;
-
-            return chi2 <= criticalValues[df] ? 1 : 0;
+            return chi2 <= value ? 1 : 0;
         }
     }
 }

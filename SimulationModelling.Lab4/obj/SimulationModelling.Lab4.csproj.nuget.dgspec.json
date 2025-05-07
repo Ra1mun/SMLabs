@@ -13,6 +13,7 @@
         "packagesPath": "C:\\Users\\SystemX\\.nuget\\packages\\",
         "outputPath": "D:\\Repos\\SimulationModelling\\SimulationModelling.Lab4\\obj\\",
         "projectStyle": "PackageReference",
+        "UsingMicrosoftNETSdk": false,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
