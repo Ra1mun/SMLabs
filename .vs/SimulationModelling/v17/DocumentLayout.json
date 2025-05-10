@@ -3,15 +3,23 @@
   "WorkspaceRootPath": "D:\\Repos\\SimulationModelling\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DD37B1C9-D61B-4018-9046-93B10ED9E9EB}|Lab11\\Lab11.csproj|d:\\repos\\simulationmodelling\\lab11\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD37B1C9-D61B-4018-9046-93B10ED9E9EB}|Lab11\\Lab11.csproj|solutionrelative:lab11\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DD37B1C9-D61B-4018-9046-93B10ED9E9EB}|Lab11\\Lab11.csproj|d:\\repos\\simulationmodelling\\lab11\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{DD37B1C9-D61B-4018-9046-93B10ED9E9EB}|Lab11\\Lab11.csproj|solutionrelative:lab11\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{210F3781-973A-4D36-8439-FB5431751285}|Lab9\\Lab9.csproj|d:\\repos\\simulationmodelling\\lab9\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{DD37B1C9-D61B-4018-9046-93B10ED9E9EB}|Lab11\\Lab11.csproj|d:\\repos\\simulationmodelling\\lab11\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD37B1C9-D61B-4018-9046-93B10ED9E9EB}|Lab11\\Lab11.csproj|solutionrelative:lab11\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{210F3781-973A-4D36-8439-FB5431751285}|Lab9\\Lab9.csproj|D:\\Repos\\SimulationModelling\\lab9\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{210F3781-973A-4D36-8439-FB5431751285}|Lab9\\Lab9.csproj|solutionrelative:lab9\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DD37B1C9-D61B-4018-9046-93B10ED9E9EB}|Lab11\\Lab11.csproj|d:\\repos\\simulationmodelling\\lab11\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{DD37B1C9-D61B-4018-9046-93B10ED9E9EB}|Lab11\\Lab11.csproj|D:\\Repos\\SimulationModelling\\lab11\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{DD37B1C9-D61B-4018-9046-93B10ED9E9EB}|Lab11\\Lab11.csproj|solutionrelative:lab11\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     },
     {
@@ -55,18 +63,44 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "D:\\Repos\\SimulationModelling\\Lab11\\Form1.cs",
+              "RelativeDocumentMoniker": "Lab11\\Form1.cs",
+              "ToolTip": "D:\\Repos\\SimulationModelling\\Lab11\\Form1.cs*",
+              "RelativeToolTip": "Lab11\\Form1.cs*",
+              "ViewState": "AQIAABkAAAAAAAAAAAAgwCMAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T04:44:14.702Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Repos\\SimulationModelling\\Lab11\\Program.cs",
+              "RelativeDocumentMoniker": "Lab11\\Program.cs",
+              "ToolTip": "D:\\Repos\\SimulationModelling\\Lab11\\Program.cs",
+              "RelativeToolTip": "Lab11\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T04:44:03.276Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "DocumentMoniker": "D:\\Repos\\SimulationModelling\\Lab11\\Form1.cs",
               "RelativeDocumentMoniker": "Lab11\\Form1.cs",
-              "ToolTip": "D:\\Repos\\SimulationModelling\\Lab11\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "RelativeToolTip": "Lab11\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "ToolTip": "D:\\Repos\\SimulationModelling\\Lab11\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]*",
+              "RelativeToolTip": "Lab11\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-06T08:34:44.012Z",
               "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "App.config",
               "DocumentMoniker": "D:\\Repos\\SimulationModelling\\Lab11\\App.config",
               "RelativeDocumentMoniker": "Lab11\\App.config",
@@ -79,7 +113,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "Form1.cs",
               "DocumentMoniker": "D:\\Repos\\SimulationModelling\\Lab8\\Form1.cs",
               "RelativeDocumentMoniker": "Lab8\\Form1.cs",
@@ -92,7 +126,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Form1.cs",
               "DocumentMoniker": "D:\\Repos\\SimulationModelling\\Lab9\\Form1.cs",
               "RelativeDocumentMoniker": "Lab9\\Form1.cs",
@@ -100,12 +134,11 @@
               "RelativeToolTip": "Lab9\\Form1.cs",
               "ViewState": "AQIAAC4AAAAAAAAAAAAawD4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T11:43:25.182Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T11:43:25.182Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "D:\\Repos\\SimulationModelling\\Lab9\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "Lab9\\Form1.Designer.cs",
@@ -113,24 +146,22 @@
               "RelativeToolTip": "Lab9\\Form1.Designer.cs",
               "ViewState": "AQIAAD0AAAAAAAAAAAAawE0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T11:42:04.933Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-03T11:42:04.933Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "DocumentMoniker": "D:\\Repos\\SimulationModelling\\Lab9\\Form1.cs",
               "RelativeDocumentMoniker": "Lab9\\Form1.cs",
               "ToolTip": "D:\\Repos\\SimulationModelling\\Lab9\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "RelativeToolTip": "Lab9\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T11:41:59.446Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+              "WhenOpened": "2025-05-03T11:41:59.446Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "D:\\Repos\\SimulationModelling\\lab8.3\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "lab8.3\\Form1.Designer.cs",
@@ -142,7 +173,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
               "DocumentMoniker": "D:\\Repos\\SimulationModelling\\lab8.3\\Form1.cs",
               "RelativeDocumentMoniker": "lab8.3\\Form1.cs",
@@ -153,19 +184,18 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435]",
               "DocumentMoniker": "D:\\Repos\\SimulationModelling\\Lab8\\Form1.cs",
               "RelativeDocumentMoniker": "Lab8\\Form1.cs",
               "ToolTip": "D:\\Repos\\SimulationModelling\\Lab8\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435]",
               "RelativeToolTip": "Lab8\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-03T11:12:03.924Z",
-              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435]"
+              "WhenOpened": "2025-05-03T11:12:03.924Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Form1.cs",
               "DocumentMoniker": "D:\\Repos\\SimulationModelling\\lab8.3\\Form1.cs",
               "RelativeDocumentMoniker": "lab8.3\\Form1.cs",

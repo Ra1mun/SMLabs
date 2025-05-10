@@ -110,6 +110,7 @@
             this.StartButton.TabIndex = 5;
             this.StartButton.Text = "Start";
             this.StartButton.UseVisualStyleBackColor = true;
+            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
             // label3
             // 
@@ -186,7 +187,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

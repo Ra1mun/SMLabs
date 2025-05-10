@@ -7,7 +7,11 @@ namespace Lab10
 {
     public partial class Form1 : Form
     {
+        private const double Lambda = 1.5;
+        
         private readonly PoissonDistribution _poissonDistribution = new PoissonDistribution();
+        
+        
 
         private readonly List<Team> _teams = new List<Team>
         {
@@ -56,8 +60,8 @@ namespace Lab10
                     var home = _teams[i];
                     var away = _teams[j];
 
-                    var goalsHome = _poissonDistribution.Generate(1.5);
-                    var goalsAway = _poissonDistribution.Generate(1.5);
+                    var goalsHome = _poissonDistribution.Generate(Lambda);
+                    var goalsAway = _poissonDistribution.Generate(Lambda);
 
                     home.PlayMatch(goalsHome, goalsAway);
                     away.PlayMatch(goalsAway, goalsHome);

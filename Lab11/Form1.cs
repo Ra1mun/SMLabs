@@ -1,175 +1,191 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Lab11
 {
     public partial class Form1 : Form
     {
-        public Form1()
-        {
-            InitializeComponent();
-        }
+        private readonly Random _rand = new Random();
+
+        private const int BinsCount = 15;
         
-        private readonly Dictionary<int, double> _distribution = new Dictionary<int, double>
-        {
-            { 1, 0.1 },
-            { 2, 0.25 },
-            { 3, 0.3 },
-            { 4, 0.15 },
-            { 5, 0.2 }
-        };
-        
+        // Табличные значения для уровня доверия 0.95
         private Dictionary<int, double> _criticalValues = new Dictionary<int, double>()
         {
-            { 1, 3.841 },
-            { 2, 5.991 },
-            { 3, 7.815 },
-            { 4, 9.488 },
-            { 5, 11.070 }
+            {1, 3.841}, {2, 5.991}, {3, 7.815}, {4, 9.488}, {5, 11.070},
+            {6, 12.592}, {7, 14.067}, {8, 15.507}, {9, 16.919}, {10, 18.307}
         };
-
+        
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void StartButton_Click(object sender, EventArgs e)
         {
             chart1.Series[0].Points.Clear();
+            chart1.ChartAreas[0].AxisX.CustomLabels.Clear();
 
-            var N = int.Parse(trialsBox.Text);
-
-            var observed = GenerateRandomValues(_distribution, N);
-
-            var empiricalProbs = ComputeEmpiricalProbabilities(observed, N);
-            var theoreticalProbs = _distribution.ToDictionary(kv => kv.Key, kv => kv.Value);
-
-            var sampleMean = ComputeMean(observed);
-            var sampleVariance = ComputeVariance(observed, sampleMean);
-
-            var trueMean = ComputeTrueMean(_distribution);
-            var trueVariance = ComputeTrueVariance(_distribution, trueMean);
-
-            var relErrorMean = Math.Abs(sampleMean - trueMean) / trueMean;
-            var relErrorVar = Math.Abs(sampleVariance - trueVariance) / trueVariance;
-
-            var chiSquare = ComputeChiSquare(observed, theoreticalProbs, N);
-            var pValue = ChiSquareTest(chiSquare, _distribution.Count - 1);
-
-            foreach(var key in empiricalProbs.Keys)
-            {
-                chart1.Series[0].Points.AddXY(key, empiricalProbs[key]);
-            }
-
-            var compare = pValue > 0.05
-                ? $"{_criticalValues[_distribution.Count - 1]} > {chiSquare : F3}"
-                : $"{_criticalValues[_distribution.Count - 1]} < {chiSquare : F3}";
+            var N = int.Parse(TrialsTextBox.Text);
+            var mean = double.Parse(MeanTextBox.Text);
+            var variance = double.Parse(VarianceTextBox.Text);
             
-            AverageLabel.Text = $"Выборочное среднее: {sampleMean:F3}, ош.={relErrorMean:P2}";
-            VarianceLabel.Text = $"Выборочная дисперсия: {sampleVariance:F3}, ош.={relErrorVar:P2}";
-            ChiSquareLabel.Text = $"Хи-квадрат: {compare} является {pValue > 0.05}" ;
+            var sample = GenerateNormalSample(N, mean, variance);
+
+            var trueMean = ComputeTrueMean(sample);
+            var trueVariance = ComputeTrueVariance(sample, trueMean);
+
+            var relErrorMean = Math.Abs(mean - trueMean) / trueMean;
+            var relErrorVar = Math.Abs(variance - trueVariance) / trueVariance;
+
+            var sigma = Math.Sqrt(variance);
+
+            var binEdges = ComputeBinEdges(sample);
+            
+            var freq = ComputeFrequencies(sample);
+            
+            var chi2 = ChiSquareTest(N, mean, sigma, binEdges, freq);
+            
+            PlotHistogram(sample, binEdges, freq);
+            
+            AverageLabel.Text = $"Выборочное среднее: {trueMean:F3}, ош.={relErrorMean:P2}";
+            VarianceLabel.Text = $"Выборочная дисперсия: {trueVariance:F3}, ош.={relErrorVar:P2}";
+            ChiSquareLabel.Text = $"Хи-квадрат: {chi2}" ;
         }
 
-        private static List<int> GenerateRandomValues(Dictionary<int, double> distribution, int N)
+        private void PlotHistogram(List<double> data, double[] binEdges, int[] frequencies)
         {
-            var result = new List<int>();
-            var rand = new Random();
-            var cumulative = new List<(double, int)>();
+            var min = data.Min();
+            var max = data.Max();
+            var binWidth = (max - min) / BinsCount;
 
-            double sum = 0;
-            foreach (var pair in distribution)
+            chart1.Series.Clear();
+            var series = new Series();
+            series.ChartType = SeriesChartType.Column;
+            double maxFrequency = 0;
+            for (int i = 0; i < BinsCount; i++)
             {
-                sum += pair.Value;
-                cumulative.Add((sum, pair.Key));
+                var binEdge = binEdges[i] + binWidth / 2;
+                
+                series.Points.AddXY(binEdge, frequencies[i]);
+                
+                if (frequencies[i] > maxFrequency)
+                    maxFrequency = frequencies[i];
             }
+            
+            chart1.Series.Add(series);
+            
+            chart1.ChartAreas[0].AxisY.Maximum = maxFrequency * 1.1;
+            chart1.ChartAreas[0].AxisY.Minimum = 0;
+        }
 
+        private List<double> GenerateNormalSample(int N, double mean, double variance)
+        {
+            var result = new List<double>();
             for (int i = 0; i < N; i++)
             {
-                double u = rand.NextDouble();
-                foreach (var (prob, value) in cumulative)
-                {
-                    if (u <= prob)
-                    {
-                        result.Add(value);
-                        break;
-                    }
-                }
+                var mul = BoxMuller();
+                result.Add(Math.Sqrt(variance) * mul + mean);
             }
 
             return result;
         }
 
-        // Эмпирические вероятности
-        private static Dictionary<int, double> ComputeEmpiricalProbabilities(List<int> values, int N)
+        private double BoxMuller()
         {
-            var freq = new Dictionary<int, int>();
-            foreach (var v in values)
-            {
-                if (!freq.ContainsKey(v)) freq[v] = 0;
-                freq[v]++;
-            }
-
-            return freq.ToDictionary(kv => kv.Key, kv => (double)kv.Value / N);
+            var alfa1 = _rand.NextDouble();
+            var alfa2 = _rand.NextDouble();
+            return Math.Sqrt(-2.0 * Math.Log(alfa1)) * Math.Cos(2.0 * Math.PI * alfa2);
         }
-
-        // Среднее значение
-        private static double ComputeMean(List<int> values)
+        
+        private static double ComputeTrueMean(List<double> values)
         {
             return values.Average();
         }
 
-        // Дисперсия
-        private static double ComputeVariance(List<int> values, double mean)
+        private static double ComputeTrueVariance(List<double> values, double mean)
         {
             return values.Select(x => Math.Pow(x - mean, 2)).Average();
         }
-
-        // Теоретическое среднее
-        private static double ComputeTrueMean(Dictionary<int, double> distribution)
+        
+        private static double[] ComputeBinEdges(List<double> data)
         {
-            return distribution.Sum(kv => kv.Key * kv.Value);
+            var min = data.Min();
+            var max = data.Max();
+            var binWidth = (max - min) / BinsCount;
+            var binEdges = new double[BinsCount + 1];
+            for (int i = 0; i <= BinsCount; i++)
+                binEdges[i] = min + i * binWidth;
+            
+            return binEdges;
         }
 
-        // Теоретическая дисперсия
-        private static double ComputeTrueVariance(Dictionary<int, double> distribution, double mean)
+        private static int[] ComputeFrequencies(List<double> data)
         {
-            return distribution.Sum(kv => kv.Value * Math.Pow(kv.Key - mean, 2));
-        }
-
-        // Хи-квадрат
-        private static double ComputeChiSquare(List<int> observed, Dictionary<int, double> theoretical, int N)
-        {
-            var freq = observed.GroupBy(x => x).ToDictionary(g => g.Key, g => g.Count());
-
-            double chi2 = 0;
-            foreach (var key in theoretical.Keys)
+            var min = data.Min();
+            var max = data.Max();
+            var binWidth = (max - min) / BinsCount;
+            var frequencies = new int[BinsCount];
+            foreach (var x in data)
             {
-                int O;
-                if(freq.TryGetValue(key, out var value))
+                if (x >= min && x < max)
                 {
-                    O = 0;
+                    var bin = (int)Math.Floor((x - min) / binWidth);
+                    if (bin >= 0 && bin < BinsCount)
+                        frequencies[bin]++;
                 }
+            }
+            
+            return frequencies;
+        }
+        
+        private static double NormalCDF(double x, double mu, double sigma)
+        {
+            var t = (x - mu) / (sigma * Math.Sqrt(2));
+            return 0.5 * (1 + Erf(t));
+        }
 
-                O = value;
-                double E = theoretical[key] * N;
-                chi2 += Math.Pow(O - E, 2) / E;
+        private static double Erf(double x)
+        {
+            // Аппроксимация по формуле Абрамовица и Стигуна
+            var a1 = 0.254829592;
+            var a2 = -0.284496736;
+            var a3 = 1.421413741;
+            var a4 = -1.453152027;
+            var a5 = 1.061405429;
+            var p = 0.3275911;
+
+            int sign = x < 0 ? -1 : 1;
+            x = Math.Abs(x);
+
+            var t = 1.0 / (1.0 + p * x);
+            var y = 1.0 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.Exp(-x * x);
+
+            return sign * y;
+        }
+        
+        private static double ChiSquareTest(int N, double mean, double sigma, double[] binEdges, int[] frequencies)
+        {
+            var expected = new double[BinsCount];
+            for (int i = 0; i < BinsCount; i++)
+            {
+                var a = binEdges[i];
+                var b = binEdges[i + 1];
+                var p = NormalCDF(b, mean, sigma) - NormalCDF(a, mean, sigma);
+                expected[i] = N * p;
+            }
+            
+            double result = 0;
+            for (int i = 0; i < BinsCount; i++)
+            {
+                if (expected[i] > 0)
+                    result += Math.Pow(frequencies[i] - expected[i], 2) / expected[i];
             }
 
-            return chi2;
-        }
-
-        private double ChiSquareTest(double chi2, int df)
-        {
-            if (!_criticalValues.TryGetValue(df, out var value)) return 0;
-
-            return chi2 <= value ? 1 : 0;
+            return result;
         }
     }
 }

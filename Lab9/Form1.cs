@@ -32,6 +32,9 @@ namespace Lab9
         };
 
         private readonly List<TextBox> _evtTextBoxes;
+        
+        private readonly Random _rand = new Random();
+
 
 
         public Form1()
@@ -49,10 +52,10 @@ namespace Lab9
 
             var N = int.Parse(trialsBox.Text);
 
-            var observed = GenerateRandomValues(_distribution, N);
+            var observed = GenerateRandomValues(N);
 
             var empiricalProbs = ComputeEmpiricalProbabilities(observed, N);
-            var theoreticalProbs = _distribution.ToDictionary(kv => kv.Key, kv => kv.Value);
+            var theoreticalProbs = _distribution;
 
             var sampleMean = ComputeMean(observed);
             var sampleVariance = ComputeVariance(observed, sampleMean);
@@ -64,7 +67,7 @@ namespace Lab9
             var relErrorVar = Math.Abs(sampleVariance - trueVariance) / trueVariance;
 
             var chiSquare = ComputeChiSquare(observed, theoreticalProbs, N);
-            var pValue = ChiSquareTest(chiSquare, _distribution.Count - 1);
+            var check = ChiSquareTest(chiSquare, _distribution.Count - 1);
 
             foreach(var key in empiricalProbs.Keys)
             {
@@ -73,23 +76,22 @@ namespace Lab9
                 chart1.Series[0].Points.AddXY(key, empiricalProbs[key]);
             }
 
-            var compare = pValue > 0.05
+            var compare = check
                 ? $"{_criticalValues[_distribution.Count - 1]} > {chiSquare:F3}"
                 : $"{_criticalValues[_distribution.Count - 1]} < {chiSquare:F3}";
             
             AverageLabel.Text = $"Выборочное среднее: {sampleMean:F3}, ош.={relErrorMean:P2}";
             VarianceLabel.Text = $"Выборочная дисперсия: {sampleVariance:F3}, ош.={relErrorVar:P2}";
-            ChiSquareLabel.Text = $"Хи-квадрат: {compare} является {pValue > 0.05}" ;
+            ChiSquareLabel.Text = $"Хи-квадрат: {compare} является {check}" ;
         }
 
-        private static List<int> GenerateRandomValues(Dictionary<int, double> distribution, int N)
+        private List<int> GenerateRandomValues(int N)
         {
             var result = new List<int>();
-            var rand = new Random();
             var cumulative = new List<(double, int)>();
 
             double sum = 0;
-            foreach (var pair in distribution)
+            foreach (var pair in _distribution)
             {
                 sum += pair.Value;
                 cumulative.Add((sum, pair.Key));
@@ -97,7 +99,7 @@ namespace Lab9
 
             for (int i = 0; i < N; i++)
             {
-                double u = rand.NextDouble();
+                var u = _rand.NextDouble();
                 foreach (var (prob, value) in cumulative)
                 {
                     if (u <= prob)
@@ -110,9 +112,15 @@ namespace Lab9
 
             return result;
         }
+        
+        private bool ChiSquareTest(double chi2, int df)
+        {
+            if (!_criticalValues.TryGetValue(df, out var value)) return false;
 
-        // Эмпирические вероятности
-        private static Dictionary<int, double> ComputeEmpiricalProbabilities(List<int> values, int N)
+            return chi2 <= value;
+        }
+
+        private Dictionary<int, double> ComputeEmpiricalProbabilities(List<int> values, int N)
         {
             var freq = new Dictionary<int, int>();
             foreach (var v in values)
@@ -124,31 +132,26 @@ namespace Lab9
             return freq.ToDictionary(kv => kv.Key, kv => (double)kv.Value / N);
         }
 
-        // Среднее значение
         private static double ComputeMean(List<int> values)
         {
             return values.Average();
         }
 
-        // Дисперсия
         private static double ComputeVariance(List<int> values, double mean)
         {
             return values.Select(x => Math.Pow(x - mean, 2)).Average();
         }
 
-        // Теоретическое среднее
         private static double ComputeTrueMean(Dictionary<int, double> distribution)
         {
             return distribution.Sum(kv => kv.Key * kv.Value);
         }
 
-        // Теоретическая дисперсия
         private static double ComputeTrueVariance(Dictionary<int, double> distribution, double mean)
         {
             return distribution.Sum(kv => kv.Value * Math.Pow(kv.Key - mean, 2));
         }
 
-        // Хи-квадрат
         private static double ComputeChiSquare(List<int> observed, Dictionary<int, double> theoretical, int N)
         {
             var freq = observed.GroupBy(x => x).ToDictionary(g => g.Key, g => g.Count());
@@ -163,18 +166,13 @@ namespace Lab9
                 }
 
                 O = value;
-                double E = theoretical[key] * N;
+                var E = theoretical[key] * N;
                 chi2 += Math.Pow(O - E, 2) / E;
             }
 
             return chi2;
         }
 
-        private double ChiSquareTest(double chi2, int df)
-        {
-            if (!_criticalValues.TryGetValue(df, out var value)) return 0;
-
-            return chi2 <= value ? 1 : 0;
-        }
+        
     }
 }

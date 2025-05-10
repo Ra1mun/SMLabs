@@ -34,13 +34,7 @@ public partial class lab2 : Form
     {
         var a = _rand.NextDouble();
         var p = 1 / (double) (_answers.Count - 1);
-        var k = 0;
-        while (a > 0)
-        {
-            a -= p;
-            
-            k++;
-        }
+        var k = (int)(a/p);
         
         button1.Text = _answers[k];
     }
