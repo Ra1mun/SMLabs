@@ -1,0 +1,9 @@
+D:\Repos\SimulationModelling\Lab12\bin\Debug\Lab12.exe.config
+D:\Repos\SimulationModelling\Lab12\bin\Debug\Lab12.exe
+D:\Repos\SimulationModelling\Lab12\bin\Debug\Lab12.pdb
+D:\Repos\SimulationModelling\Lab12\obj\Debug\Lab12.csproj.AssemblyReference.cache
+D:\Repos\SimulationModelling\Lab12\obj\Debug\Lab12.Properties.Resources.resources
+D:\Repos\SimulationModelling\Lab12\obj\Debug\Lab12.csproj.GenerateResource.cache
+D:\Repos\SimulationModelling\Lab12\obj\Debug\Lab12.csproj.CoreCompileInputs.cache
+D:\Repos\SimulationModelling\Lab12\obj\Debug\Lab12.exe
+D:\Repos\SimulationModelling\Lab12\obj\Debug\Lab12.pdb
