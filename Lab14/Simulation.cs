@@ -1,73 +1,85 @@
 ﻿using System;
+using System.Collections.Generic;
+using Lab14.Agents;
 
 namespace Lab14
 {
     public class Simulation
     {
-        private QueueManager queueManager = new QueueManager();
-        private BankTeller teller;
-        private double interArrivalTimeMean;
-        private Random rand = new Random();
-        private int customerIdCounter = 1;
+        private readonly List<Agent> _agents;
+        private double _currentTime;
+        private readonly double _simulationTime;
 
-        public Simulation(double interArrivalTimeMean, double serviceTimeMean)
+        public Simulation(double simulationTime, double interArrivalTimeMean, double serviceTimeMean)
         {
-            this.interArrivalTimeMean = interArrivalTimeMean;
-            teller = new BankTeller("Банкир", serviceTimeMean);
-            teller.CustomerServiced += OnCustomerProcessed;
+            _simulationTime = simulationTime;
+            _currentTime = 0;
+            _agents = new List<Agent>();
+
+            // Create and connect agents
+            var source = new Source("Source", 1.0 / interArrivalTimeMean);
+            var queue = new Queue("Queue");
+            var service = new Service("Service", 1.0 / serviceTimeMean);
+            var output = new Output("Output");
+
+            // Connect agents through events
+            source.CustomerGenerated += customer => queue.Enqueue(customer);
+            queue.CustomerDequeued += customer => service.ProcessCustomer(customer, _currentTime);
+            service.CustomerServiced += customer => output.ProcessCustomer(customer);
+
+            // Add agents to the list
+            _agents.Add(source);
+            _agents.Add(queue);
+            _agents.Add(service);
+            _agents.Add(output);
         }
 
-        public void Run(double simulationTime)
+        public void Run()
         {
-            double currentTime = 0.0;
-
-            Console.WriteLine("Запуск симуляции...");
-
-            while (currentTime < simulationTime)
+            while (_currentTime < _simulationTime)
             {
-                double interArrival = GenerateInterArrivalTime();
-                currentTime += interArrival;
+                // Generate new customer if it's time
+                if (_agents[0] is Source source && source.ShouldGenerateCustomer(_currentTime))
+                {
+                    source.GenerateCustomer(_currentTime);
+                }
 
-                var customer = new Customer($"Клиент{customerIdCounter++}", currentTime);
-                Console.WriteLine($"[t={currentTime:F2}] Прибыл {customer.Name}.");
-                queueManager.Enqueue(customer);
+                var queue = _agents[1] as Queue;
+                var service = _agents[2] as Service;
+                if (!service.IsBusy && queue.Count > 0)
+                {
+                    var customer = queue.Dequeue();
+                    service.ProcessCustomer(customer, _currentTime);
+                }
 
-                ProcessQueue(currentTime);
-                System.Threading.Thread.Sleep(100); // Визуализация
-            }
-
-            // Обслужить оставшихся в очереди
-            while (queueManager.Count > 0)
-            {
-                ProcessQueue(currentTime);
-                currentTime += 0.1;
+                // Advance time
+                _currentTime += 0.1;
                 System.Threading.Thread.Sleep(50);
             }
 
-            Console.WriteLine("Моделирование завершено.");
-        }
-
-        private double GenerateInterArrivalTime()
-        {
-            double r = rand.NextDouble();
-            return -Math.Log(1.0 - r) * interArrivalTimeMean; // Экспоненциальное
-        }
-
-        private void ProcessQueue(double currentTime)
-        {
-            if (!teller.IsBusy)
+            while ((_agents[1] as Queue).Count > 0)
             {
-                var customer = queueManager.Dequeue();
-                if (customer != null)
+                var queue = _agents[1] as Queue;
+                var service = _agents[2] as Service;
+                if (!service.IsBusy)
                 {
-                    teller.Serve(customer, currentTime);
+                    var customer = queue.Dequeue();
+                    service.ProcessCustomer(customer, _currentTime);
                 }
+                _currentTime += 0.1;
+                System.Threading.Thread.Sleep(50);
             }
+
+            PrintResults();
         }
 
-        private void OnCustomerProcessed(Customer customer, double finishTime)
+        private void PrintResults()
         {
-            Console.WriteLine($"[t={finishTime:F2}] {customer.Name} ушёл из банка.");
+            var output = _agents[3] as Output;
+            Console.WriteLine("\nSimulation Results:");
+            Console.WriteLine($"Total customers processed: {output.TotalProcessedCustomers}");
+            Console.WriteLine($"Average queue time: {output.AverageQueueTime:F2}");
+            Console.WriteLine($"Average total time: {output.AverageTotalTime:F2}");
         }
     }
 }

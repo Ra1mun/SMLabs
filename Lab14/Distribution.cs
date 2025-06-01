@@ -4,7 +4,7 @@ namespace Lab14
 {
     public interface IDistribution
     {
-        double Generate();
+        int Generate();
     }
 
     public class PoissonDistribution : IDistribution
@@ -18,16 +18,17 @@ namespace Lab14
         
         private readonly Random _rand = new Random();
         
-        public double Generate()
+        public int Generate()
         {
             var L = Math.Exp(-_lambda);
             var k = 0;
             double p = 1;
-            do
+            while (p > L)
             {
                 k++;
                 p *= _rand.NextDouble();
-            } while (p > L);
+            }
+            
             return k - 1;
         }
 
